@@ -1,0 +1,52 @@
+﻿@model List<LearnerProject.Models.Entities.Teacher>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<br />
+<h3>Eğitmenler Listesi</h3>
+@{
+    int count = 0;
+}
+<br />
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>#</th>
+        <th>Resim</th>
+        <th>Ad Soyad</th>
+        <th>Kullanıcı Adı</th>
+        <th>Şifre</th>
+        <th>Unvan</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td><img src="@item.ImageUrl" style="height:50px; width:50px" /></td>
+            <td>@item.NameSurname</td>
+            <td>@item.UserName</td>
+            <td>@item.Password</td>
+            <td>@item.Title</td>
+            <td>@( item.Status == true ? "Aktif" : "Pasif" )</td>
+
+            <td>
+                <a href="/AdminTeacher/UpdateTeacher/@item.TeacherId" class="btn btn-outline-info"><i class="fa fa-pen"></i> Güncelle</a>
+                <span style="margin-right: 10px;"></span>
+                <a href="/AdminTeacher/MakeActive/@item.TeacherId" class="btn btn-outline-warning">Aktif</a>
+                <span style="margin-right: 10px;"></span>
+                <a href="/AdminTeacher/MakePassive/@item.TeacherId" class="btn btn-outline-light">Pasif</a>
+                <span style="margin-right: 10px;"></span>
+                <a href="/AdminTeacher/DeleteTeacher/@item.TeacherId" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Eğitmeni Sil</a>
+            </td>
+
+        </tr>
+    }
+</table>
+<br />
+<a href="/AdminTeacher/AddTeacher" class="btn btn-outline-success">Yeni Eğitmen Ekle</a>
+

@@ -1,0 +1,45 @@
+﻿@model LearnerProject.Models.Entities.Review
+
+@{
+    ViewBag.Title = "UpdateTeacherCourseReview";
+    Layout = "~/Views/TeacherLayout/Index.cshtml";
+}
+
+<h2>Update Teacher Course Review</h2>
+
+@using (Html.BeginForm("UpdateTeacherCourseReview", "TeacherCourse", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ReviewId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReviewValue, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReviewValue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReviewValue, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input value="Güncelle" type="submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+<br />
+<div>
+    @Html.ActionLink("Back to List", "CourseReview")
+</div>

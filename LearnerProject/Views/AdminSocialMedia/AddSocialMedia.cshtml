@@ -1,0 +1,25 @@
+﻿@model LearnerProject.Models.Entities.SocialMedia
+
+@{
+    ViewBag.Title = "AddSocialMedia";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<br />
+<h2>Sosyal Medya Hesabı Ekleme Formu</h2>
+
+<form method="post">
+    <label>Sosyal Medya Adı</label>
+    @Html.TextBoxFor(x => x.SocialMediaName, new { @class = "form-control", @placeholder = "Lütfen geçerli bir sosyal medya adı giriniz" })
+    <br />
+    <label>Sosyal Medya Url</label>
+    @Html.TextBoxFor(x => x.SocialMediaUrl, new { @class = "form-control", @placeholder = "Lütfen geçerli bir sosyal medya url giriniz" })
+    <br />
+    <label>Icon</label>
+    @Html.TextBoxFor(x => x.Icon, new { @class = "form-control", @placeholder = "Lütfen geçerli bir icon giriniz" })
+    <br />
+
+    <button class="btn btn-outline-primary"><i class="fas fa-save"></i>Kaydet</button>
+</form>
+
+

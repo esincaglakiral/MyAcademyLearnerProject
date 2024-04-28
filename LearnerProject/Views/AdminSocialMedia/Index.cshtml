@@ -1,0 +1,48 @@
+﻿@model List<LearnerProject.Models.Entities.SocialMedia>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<br />
+<h3>Sosyal Medyalar Listesi</h3>
+@{
+    int count = 0;
+}
+<br />
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>#</th>
+        <th>Sosyal Medya Adı</th>
+        <th>Sosyal Medya Url</th>
+        <th>Icon</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.SocialMediaName</td>
+            <td>@item.SocialMediaUrl</td>
+            <td>@item.Icon</td>
+            <td>@( item.Status == true ? "Aktif" : "Pasif" )</td>
+
+            <td>
+                <a href="/AdminSocialMedia/UpdateSocialMedia/@item.SocialMediaId" class="btn btn-outline-info"><i class="fa fa-pen"></i> Güncelle</a>
+                <span style="margin-right: 10px;"></span>
+                <a href="/AdminSocialMedia/MakeActive/@item.SocialMediaId" class="btn btn-outline-warning">Aktif</a>
+                <span style="margin-right: 10px;"></span>
+                <a href="/AdminSocialMedia/MakePassive/@item.SocialMediaId" class="btn btn-outline-light">Pasif</a>
+                <span style="margin-right: 10px;"></span>
+                <a href="/AdminSocialMedia/DeleteSocialMedia/@item.SocialMediaId" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Hesabı Sil</a>
+            </td>
+
+        </tr>
+    }
+</table>
+<br />
+<a href="/AdminSocialMedia/AddSocialMedia" class="btn btn-outline-success">Yeni Hesap Ekle</a>
+

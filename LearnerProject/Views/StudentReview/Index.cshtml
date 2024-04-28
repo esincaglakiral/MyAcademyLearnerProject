@@ -1,0 +1,42 @@
+﻿﻿@model List<LearnerProject.Models.Entities.Review>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/StudentLayout/Index.cshtml";
+    int count = 0;
+}
+
+<h1>@ViewBag.d</h1>
+<h3 class="mt-3">Yorum Listesi</h3>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Kurs Adı</th>
+            <th>Kursa Verilen Puan</th>
+            <th>Yorum</th>
+            <th>Öğrenci Adı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                <td>@item.Course.CourseName</td>
+                <td>@item.ReviewValue</td>
+                <td>@(item.Comment.Length>50 ? item.Comment.Substring(0,50) + "..." : item.Comment )</td>
+
+                <td>@item.Student.UserName</td>
+                <td>
+                    <a href="/StudentReview/DeleteReview/@item.ReviewId" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Sil</a>
+                    <a href="/StudentReview/UpdateReview/@item.ReviewId" class="btn btn-outline-info"> <i class="fa fa-edit"></i>Güncelle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/StudentReview/AddReview/" class="btn btn-outline-success"><i class="fa fa-plus m-2"></i>Yorum Ekle</a>
+
